@@ -1,5 +1,5 @@
 # Instagram 2.0 Clone With ReactJs!
-
+## <a href="https://instagram-2-0-clone.vercel.app/" target="_blank">🔴 LIVE DEMO</a>
 #### PREREQUISITES:
 - Sign up for a Firebase account <a href='https://firebase.google.com'>HERE</a>
 - Install Node JS in your computer <a href='https://nodejs.org/en/'>HERE</a>
@@ -112,5 +112,7 @@ npm install @headlessui/react
 ```
 npm i react-moment
 ```
-![Screenshot 2022-07-21 101610](https://user-images.githubusercontent.com/99184393/180132540-0c76b549-9316-4258-95c1-c1218d908e99.png)
+#### <a href="https://instagram-2-0-clone.vercel.app/" target="_blank">You need to login first. Then add your own post by clicking the plus icon at the top</a>
+
+![image](https://user-images.githubusercontent.com/99184393/180151364-84053e15-02c0-42c3-ae50-1b4cce61d7ca.png)
 ![Screenshot 2022-07-21 101655](https://user-images.githubusercontent.com/99184393/180132557-b7a13f45-91d2-41b5-aa08-53d3384bcbf2.png)
