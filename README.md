@@ -1,5 +1,4 @@
 # Instagram 2.0 Clone With ReactJs!
-## <a href="https://instagram-2-0-clone.vercel.app/" target="_blank">🔴 LIVE DEMO</a>
 #### PREREQUISITES:
 - Sign up for a Firebase account <a href='https://firebase.google.com'>HERE</a>
 - Install Node JS in your computer <a href='https://nodejs.org/en/'>HERE</a>
@@ -25,7 +24,7 @@ npx create-next-app instagram_clone
 ```
 cd instagram_clone
 ```
-## Install Tailwind CSS with Create React App
+## Install Tailwind CSS with Next.js
 #### Install Tailwind CSS
 `Install tailwindcss and its peer dependencies via npm, and then run the init command to generate both tailwind.config.js and postcss.config.js.`
 ```
@@ -112,7 +111,5 @@ npm install @headlessui/react
 ```
 npm i react-moment
 ```
-#### <a href="https://instagram-2-0-clone.vercel.app/" target="_blank">You need to login first. Then add your own post by clicking the plus icon at the top</a>
-
 ![image](https://user-images.githubusercontent.com/99184393/180151364-84053e15-02c0-42c3-ae50-1b4cce61d7ca.png)
 ![image](https://user-images.githubusercontent.com/99184393/180152166-8c1b05c9-ac9a-4ed1-8cf8-80ee71840445.png)
