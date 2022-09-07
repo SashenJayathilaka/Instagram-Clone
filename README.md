@@ -20,7 +20,7 @@
 <a href="https://project-rouge-pi.vercel.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/188783926-2478a323-2472-4b4e-ae49-583e88700848.gif' alt='image'/></a>
 </div>
 
-
+<br />
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
