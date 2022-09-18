@@ -82,7 +82,9 @@ Install dependencies
 
 ### :test_tube: Install Tailwind CSS with Next.js
 #### Install Tailwind CSS
-`Install tailwindcss and its peer dependencies via npm, and then run the init command to generate both tailwind.config.js and postcss.config.js.`
+
+Install tailwindcss and its peer dependencies via npm, and then run the init command to generate both ``tailwind.config.js`` and ``postcss.config.js``.
+
 ```
 npm install -D tailwindcss postcss autoprefixer
 ```
@@ -90,7 +92,7 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 #### Configure your template paths
-`Add the paths to all of your template files in your tailwind.config.js file.`
+Add the paths to all of your template files in your ``tailwind.config.js`` file.
 <br>
 ```
 module.exports = {
@@ -105,12 +107,13 @@ module.exports = {
 }
 ```
 #### Add the Tailwind directives to your CSS
-`Add the @tailwind directives for each of Tailwind’s layers to your ./styles/globals.css file.`
+Add the ``@tailwind`` directives for each of Tailwind’s layers to your ``./styles/globals.css`` file.
 ```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
+Install dependencies
 
 ```
 npm install @heroicons/react
