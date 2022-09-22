@@ -1,7 +1,5 @@
 # Instagram 2.0 Clone With ReactJs!
 
-![](https://img.shields.io/badge/Made%20with-Next.js-orange?style=for-the-badge&logo=Next.js)
-
 <a href="https://project-rouge-pi.vercel.app" target="_blank">![](https://img.shields.io/website-up-down-green-red/http/monip.org.svg)</a>
 ![](https://img.shields.io/badge/Maintained-Yes-indigo)
 ![](https://img.shields.io/github/forks/SashenJayathilaka/Instagram-Clone.svg)
@@ -9,7 +7,19 @@
 ![](https://img.shields.io/github/issues/SashenJayathilaka/Instagram-Clone)
 ![](https://img.shields.io/github/last-commit/SashenJayathilaka/Instagram-Clone)
 
+<!-- Screenshots -->
+
+### :camera: Screenshots
+
+<div align="center">
+<a href="https://project-rouge-pi.vercel.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/188783926-2478a323-2472-4b4e-ae49-583e88700848.gif' alt='image'/></a>
+</div>
+
 ## <a href="https://project-rouge-pi.vercel.app" target="_blank">LIVE DEMO 💥</a>
+
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
+![forthebadge](https://forthebadge.com/images/badges/for-you.svg)
+![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)
 
 ### :space_invader: Tech Stack
 
@@ -29,31 +39,40 @@
     <li><a href="https://firebase.google.com">Firebase</a></li>
   </ul>
 </details>
-
-<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="" width="30" height="30" /></a>
-<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg" alt="Google" width="30" height="30" /></a>
-<a href="#"><img src="https://user-images.githubusercontent.com/99184393/177784219-cab3eb2f-bc21-4c09-ab9e-dd7272605ca5.png" alt="" width="30" height="30" /></a>
-<a href="#"><img src="https://user-images.githubusercontent.com/99184393/177784603-d69e9d02-721a-4bce-b9b3-949165d2edeb.png" alt="" width="30" height="30" /></a>
-<a href="#"><img src="https://raw.githubusercontent.com/atulmy/oauth/master/web/public/images/social/instagram.svg" alt="" width="30" height="30" /></a>
-<a href="#"><img src="https://raw.githubusercontent.com/atulmy/oauth/master/web/public/images/social/google.svg" alt="" width="30" height="30" /></a>
-<a href="#"><img src="https://raw.githubusercontent.com/atulmy/oauth/master/web/public/images/tech/github.svg" alt="" width="30" height="30" /></a>
-<a href="#"><img src="https://user-images.githubusercontent.com/99184393/179383376-874f547c-4e6f-4826-850e-706b009e7e2b.png" alt="" width="30" height="30" /></a>
-<br>
-
-<hr />
-
-<div align="center">
-<a href="https://project-rouge-pi.vercel.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/188783926-2478a323-2472-4b4e-ae49-583e88700848.gif' alt='image'/></a>
-</div>
-
 <br />
 
-## 	:toolbox: Getting Started
+<table>
+    <tr>
+        <td>
+<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="" width="30" height="30" /></a>
+        </td>
+                        <td>
+<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg" alt="Google" width="30" height="30" /></a>
+        </td>
+                        <td>
+<a href="#"><img src="https://user-images.githubusercontent.com/99184393/179383376-874f547c-4e6f-4826-850e-706b009e7e2b.png" alt="" width="30" height="30" /></a>
+        </td>
+                        <td>
+<a href="#"><img src="https://user-images.githubusercontent.com/99184393/180462270-ea4a249c-627c-4479-9431-5c3fd25454c4.png" alt="" width="30" height="30" /></a>
+        </td>
+                                <td>
+<a href="#"><img src="https://user-images.githubusercontent.com/99184393/177784603-d69e9d02-721a-4bce-b9b3-949165d2edeb.png" alt="" width="30" height="30" /></a>
+        </td>
+                                <td>
+<a href="#"><img src="https://raw.githubusercontent.com/atulmy/oauth/master/web/public/images/social/instagram.svg" alt="" width="30" height="30" /></a>
+        </td>
+    </tr>
+</table>
+
+## :toolbox: Getting Started
+
 ### :bangbang: Prerequisites
+
 - Sign up for a Firebase account <a href='https://firebase.google.com'>HERE</a>
 - Install Node JS in your computer <a href='https://nodejs.org/en/'>HERE</a>
 
 <!-- Env Variables -->
+
 ### :key: Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -71,9 +90,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### :gear: Installation
 
 Install my-project with npm
+
 ```
 npx create-next-app instagram_clone
 ```
+
 ```
 cd instagram_clone
 ```
@@ -81,19 +102,24 @@ cd instagram_clone
 Install dependencies
 
 ### :test_tube: Install Tailwind CSS with Next.js
+
 #### Install Tailwind CSS
 
-Install tailwindcss and its peer dependencies via npm, and then run the init command to generate both ``tailwind.config.js`` and ``postcss.config.js``.
+Install tailwindcss and its peer dependencies via npm, and then run the init command to generate both `tailwind.config.js` and `postcss.config.js`.
 
 ```
 npm install -D tailwindcss postcss autoprefixer
 ```
+
 ```
 npx tailwindcss init -p
 ```
+
 #### Configure your template paths
-Add the paths to all of your template files in your ``tailwind.config.js`` file.
+
+Add the paths to all of your template files in your `tailwind.config.js` file.
 <br>
+
 ```
 module.exports = {
   content: [
@@ -106,40 +132,53 @@ module.exports = {
   plugins: [],
 }
 ```
+
 #### Add the Tailwind directives to your CSS
-Add the ``@tailwind`` directives for each of Tailwind’s layers to your ``./styles/globals.css`` file.
+
+Add the `@tailwind` directives for each of Tailwind’s layers to your `./styles/globals.css` file.
+
 ```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
+
 Install dependencies
 
 ```
 npm install @heroicons/react
 ```
+
 ```
 npm install --save-dev @faker-js/faker
 ```
+
 ```
 npm i tailwind-scrollbar
 ```
+
 ```
 npm i tailwind-scrollbar-hide
 ```
+
 ```
 npm i @tailwindcss/forms
 ```
- npm install recoil
+
+npm install recoil
+
 ```
 npm install @headlessui/react
 ```
+
 ```
 npm i react-moment
 ```
+
 <a href="https://github.com/SashenJayathilaka/Instagram-Clone/blob/master/package.json" target="_blank">🔶 Other Dependency Info</a>
 
 <!-- Run Locally -->
+
 ### :running: Run Locally
 
 Clone the project
@@ -155,6 +194,7 @@ Install dependencies
   or
   yarn install
 ```
+
 Start the server
 
 ```bash
@@ -185,6 +225,7 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 <!-- Deployment -->
+
 ### :triangular_flag_on_post: Deployment
 
 To deploy this project run
@@ -201,14 +242,6 @@ Your Name - [@twitter_handle](https://twitter.com/SashenHasinduJ) - sashenjayath
 
 Project Link: [https://github.com/Louis3797/Instagram-Clone](https://github.com/SashenJayathilaka/Instagram-Clone.git)
 
-
 <br />
 
-![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
-![forthebadge](https://forthebadge.com/images/badges/for-you.svg)
-![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)
-<br />
-
-<a href="https://project-rouge-pi.vercel.app" target="_blank">![image](https://user-images.githubusercontent.com/99184393/180151364-84053e15-02c0-42c3-ae50-1b4cce61d7ca.png)</a>
 <div align="center">Don't forget to leave a star ⭐️</div>
-
