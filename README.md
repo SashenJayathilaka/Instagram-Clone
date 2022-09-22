@@ -1,6 +1,6 @@
 # Instagram 2.0 Clone With ReactJs!
 
-<a href="https://project-rouge-pi.vercel.app" target="_blank">![](https://img.shields.io/website-up-down-green-red/http/monip.org.svg)</a>
+<a href="https://instagram-clone-3l36.vercel.app" target="_blank">![](https://img.shields.io/website-up-down-green-red/http/monip.org.svg)</a>
 ![](https://img.shields.io/badge/Maintained-Yes-indigo)
 ![](https://img.shields.io/github/forks/SashenJayathilaka/Instagram-Clone.svg)
 ![](https://img.shields.io/github/stars/SashenJayathilaka/Instagram-Clone.svg)
@@ -12,10 +12,10 @@
 ### :camera: Screenshots
 
 <div align="center">
-<a href="https://project-rouge-pi.vercel.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/188783926-2478a323-2472-4b4e-ae49-583e88700848.gif' alt='image'/></a>
+<a href="https://instagram-clone-3l36.vercel.app" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/188783926-2478a323-2472-4b4e-ae49-583e88700848.gif' alt='image'/></a>
 </div>
 
-## <a href="https://project-rouge-pi.vercel.app" target="_blank">LIVE DEMO 💥</a>
+## <a href="https://instagram-clone-3l36.vercel.app" target="_blank">LIVE DEMO 💥</a>
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 ![forthebadge](https://forthebadge.com/images/badges/for-you.svg)
