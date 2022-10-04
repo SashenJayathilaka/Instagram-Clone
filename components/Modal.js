@@ -25,34 +25,38 @@ function Modal() {
 
   const uploadPost = async () => {
     if (loading) return;
-
     setLoading(true);
 
-    // create a post add to firestore
-    // get the host id
-    // upload the image to firebase storage
-    // get a download URL from fb storage with the post ID
-    // get a downloaded URL from fb storage and update the original post with image
+    try {
+      // create a post add to firestore
+      // get the host id
+      // upload the image to firebase storage
+      // get a download URL from fb storage with the post ID
+      // get a downloaded URL from fb storage and update the original post with image
 
-    const docRef = await addDoc(collection(db, "posts"), {
-      username: session.user.username,
-      caption: captionRef.current.value,
-      profileImage: session.user.image,
-      timestamp: serverTimestamp(),
-    });
+      const docRef = await addDoc(collection(db, "posts"), {
+        username: session.user.username,
+        caption: captionRef.current.value,
+        profileImage: session.user.image,
+        timestamp: serverTimestamp(),
+      });
 
-    //console.log("🔥🚀🔥🚀", docRef.id);
+      //console.log("🔥🚀🔥🚀", docRef.id);
 
-    const imageRef = ref(storage, `posts/${docRef.id}/image`);
+      const imageRef = ref(storage, `posts/${docRef.id}/image`);
 
-    await uploadString(imageRef, selectedFile, "data_url").then(
-      async (snapshot) => {
-        const downloadUrl = await getDownloadURL(imageRef);
-        await updateDoc(doc(db, "posts", docRef.id), {
-          image: downloadUrl,
-        });
-      }
-    );
+      await uploadString(imageRef, selectedFile, "data_url").then(
+        async (snapshot) => {
+          const downloadUrl = await getDownloadURL(imageRef);
+          await updateDoc(doc(db, "posts", docRef.id), {
+            image: downloadUrl,
+          });
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
     //console.log(downloadUrl);
     setOpen(false);
     setLoading(false);
