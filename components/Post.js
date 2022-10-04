@@ -61,27 +61,35 @@ function Post({ id, username, userImage, img, caption }) {
   );
 
   const likePost = async () => {
-    if (hasLikes) {
-      await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
-    } else {
-      await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
-        username: session.user.username,
-      });
+    try {
+      if (hasLikes) {
+        await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+      } else {
+        await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+          username: session.user.username,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const sendComment = async (e) => {
     e.preventDefault();
 
-    const commentToSend = comment;
-    setComment("");
+    try {
+      const commentToSend = comment;
+      setComment("");
 
-    await addDoc(collection(db, "posts", id, "comments"), {
-      comment: commentToSend,
-      username: session.user.username,
-      userImage: session.user.image,
-      timestamp: serverTimestamp(),
-    });
+      await addDoc(collection(db, "posts", id, "comments"), {
+        comment: commentToSend,
+        username: session.user.username,
+        userImage: session.user.image,
+        timestamp: serverTimestamp(),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
