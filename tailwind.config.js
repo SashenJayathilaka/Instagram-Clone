@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -11,4 +12,4 @@ module.exports = {
     require("tailwind-scrollbar"),
     require("tailwind-scrollbar-hide"),
   ],
-}
+};

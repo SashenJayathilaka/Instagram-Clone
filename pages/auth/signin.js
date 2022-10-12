@@ -1,10 +1,26 @@
 /* eslint-disable @next/next/no-typos */
 /* eslint-disable @next/next/no-img-element */
-import { getProviders, signIn as signIntoProvider } from "next-auth/react";
-import Header from "../../components/Header";
+import React, { useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-function signIn({ providers }) {
+import Header from "../../components/Header";
+import { auth } from "../../firebase";
+
+function signIn() {
+  const router = useRouter();
+  const [user] = useAuthState(auth);
+  const [signInWithGoogle, userCred, loading, error] =
+    useSignInWithGoogle(auth);
+
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    } else return;
+  }, [user]);
+
   return (
     <>
       <Head>
@@ -26,30 +42,18 @@ function signIn({ providers }) {
           This is not a Real app, it is build for educational purpose only
         </p>
         <div className="mt-20">
-          {Object.values(providers).map((provider) => (
-            <div key={provider.name}>
-              <button
-                className="p-3 bg-blue-500 rounded-lg text-white"
-                onClick={() =>
-                  signIntoProvider(provider.id, { callbackUrl: "/" })
-                }
-              >
-                Sign in with {provider.name}
-              </button>
-            </div>
-          ))}
+          <div>
+            <button
+              className="p-3 bg-blue-500 rounded-lg text-white"
+              onClick={() => signInWithGoogle()}
+            >
+              Sign in with Google
+            </button>
+          </div>
         </div>
       </div>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const providers = await getProviders();
-
-  return {
-    props: { providers },
-  };
 }
 
 export default signIn;

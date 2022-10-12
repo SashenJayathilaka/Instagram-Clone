@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { modalState } from "../atoms/modalAtom";
 import { CameraIcon } from "@heroicons/react/outline";
 import { Dialog, Transition } from "@headlessui/react";
-import db, { storage } from "../firebase";
+import { auth, firestore, storage } from "../firebase";
 import {
   addDoc,
   collection,
@@ -13,15 +13,15 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
-import { useSession } from "next-auth/react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Modal() {
+  const [user] = useAuthState(auth);
   const [open, setOpen] = useRecoilState(modalState);
   const filePickerRef = useRef(null);
   const captionRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const { data: session } = useSession();
 
   const uploadPost = async () => {
     if (loading) return;
@@ -34,10 +34,10 @@ function Modal() {
       // get a download URL from fb storage with the post ID
       // get a downloaded URL from fb storage and update the original post with image
 
-      const docRef = await addDoc(collection(db, "posts"), {
-        username: session.user.username,
+      const docRef = await addDoc(collection(firestore, "posts"), {
+        username: user?.displayName,
         caption: captionRef.current.value,
-        profileImage: session.user.image,
+        profileImage: user?.photoURL,
         timestamp: serverTimestamp(),
       });
 
@@ -48,7 +48,7 @@ function Modal() {
       await uploadString(imageRef, selectedFile, "data_url").then(
         async (snapshot) => {
           const downloadUrl = await getDownloadURL(imageRef);
-          await updateDoc(doc(db, "posts", docRef.id), {
+          await updateDoc(doc(firestore, "posts", docRef.id), {
             image: downloadUrl,
           });
         }
