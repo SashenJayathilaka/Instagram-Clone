@@ -11,15 +11,25 @@ import {
 import { useRecoilState } from "recoil";
 import { HomeIcon } from "@heroicons/react/solid";
 import { modalState } from "../atoms/modalAtom";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+
+import { auth } from "../firebase";
 
 function Header() {
   const [open, setOpen] = useRecoilState(modalState);
   //const open = useRecoilValue(modalState);
   const router = useRouter();
+  const [signInWithGoogle, userCred, loading, error] =
+    useSignInWithGoogle(auth);
 
-  const { data: session } = useSession();
+  const [user] = useAuthState(auth);
+
+  const logout = async () => {
+    await signOut(auth);
+  };
 
   return (
     <div className="shadow-sm border-b big-white sticky top-0 z-58">
@@ -60,7 +70,7 @@ function Header() {
           <HomeIcon onClick={() => router.push("/")} className="navBtn" />
           <MenuIcon className="h-6 md:hidden cursor-pointer" />
 
-          {session ? (
+          {user ? (
             <>
               <div className="relative navBtn">
                 <PaperAirplaneIcon className="navBtn rotate-45" />
@@ -77,14 +87,14 @@ function Header() {
               <HeartIcon className="navBtn" />
 
               <img
-                onClick={signOut}
+                onClick={logout}
                 className="h-10 rounded-full cursor-pointer"
-                src={session.user.image}
+                src={user?.photoURL}
                 alt=""
               />
             </>
           ) : (
-            <button onClick={signIn}>sign In</button>
+            <button onClick={() => signInWithGoogle()}>sign In</button>
           )}
         </div>
       </div>

@@ -1,30 +1,13 @@
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import Story from "./Story";
-import { useSession } from "next-auth/react";
+import { auth } from "../firebase";
 
 function Stories() {
+  const [user] = useAuthState(auth);
   const [suggestions, setSuggestions] = useState([]);
-  const { data: session } = useSession();
-
-  //const USERS: User[] = [];
-  /*
-  function createRandomUser() {
-    return {
-      userId: faker.datatype.uuid(),
-      username: faker.internet.userName(),
-      email: faker.internet.email(),
-      avatar: faker.image.avatar(),
-      password: faker.internet.password(),
-      birthdate: faker.date.birthdate(),
-      registeredAt: faker.date.past(),
-    };
-  }
-
-  Array.from({ length: 20 }).forEach(() => {
-    USERS.push(createRandomUser());
-  });
-*/
 
   useEffect(() => {
     const suggestions = [...Array(20)].map((_, i) => ({
@@ -47,9 +30,7 @@ function Stories() {
     overflow-x-scroll scrollbar-thin
     scrollbar-thumb-black"
     >
-      {session && (
-        <Story img={session.user.image} username={session.user.username} />
-      )}
+      {user && <Story img={user?.photoURL} username={user?.displayName} />}
 
       {suggestions.map((profile) => (
         <Story

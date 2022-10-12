@@ -21,12 +21,12 @@ import {
   orderBy,
   setDoc,
 } from "firebase/firestore";
-import db from "../firebase";
-import { useSession } from "next-auth/react";
+import { auth, firestore } from "../firebase";
 import Moment from "react-moment";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Post({ id, username, userImage, img, caption }) {
-  const { data: session } = useSession();
+  const [user] = useAuthState(auth);
   const [comment, setComment] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -36,37 +36,34 @@ function Post({ id, username, userImage, img, caption }) {
     () =>
       onSnapshot(
         query(
-          collection(db, "posts", id, "comments"),
+          collection(firestore, "posts", id, "comments"),
           orderBy("timestamp", "desc")
         ),
         (snapshot) => setComments(snapshot.docs)
       ),
-    [db, id]
+    [firestore, id]
   );
 
   useEffect(
     () =>
-      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+      onSnapshot(collection(firestore, "posts", id, "likes"), (snapshot) =>
         setLikes(snapshot.docs)
       ),
-    [db, id]
+    [firestore, id]
   );
 
   useEffect(
-    () =>
-      setHasLikes(
-        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
-      ),
+    () => setHasLikes(likes.findIndex((like) => like.id === user?.uid) !== -1),
     [likes]
   );
 
   const likePost = async () => {
     try {
       if (hasLikes) {
-        await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+        await deleteDoc(doc(firestore, "posts", id, "likes", user?.uid));
       } else {
-        await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
-          username: session.user.username,
+        await setDoc(doc(firestore, "posts", id, "likes", user?.uid), {
+          username: user?.displayName,
         });
       }
     } catch (error) {
@@ -81,10 +78,10 @@ function Post({ id, username, userImage, img, caption }) {
       const commentToSend = comment;
       setComment("");
 
-      await addDoc(collection(db, "posts", id, "comments"), {
+      await addDoc(collection(firestore, "posts", id, "comments"), {
         comment: commentToSend,
-        username: session.user.username,
-        userImage: session.user.image,
+        username: user?.displayName,
+        userImage: user?.photoURL,
         timestamp: serverTimestamp(),
       });
     } catch (error) {
@@ -105,7 +102,7 @@ function Post({ id, username, userImage, img, caption }) {
         <DotsHorizontalIcon className="h-5 cursor-pointer" />
       </div>
       <img src={img} className="object-cover w-full" alt="" />
-      {session && (
+      {user && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex space-x-4">
             {hasLikes ? (
@@ -157,7 +154,7 @@ function Post({ id, username, userImage, img, caption }) {
         </div>
       )}
 
-      {session && (
+      {user && (
         <form className="flex items-center p-4">
           <EmojiHappyIcon className="h-7" />
           <input
