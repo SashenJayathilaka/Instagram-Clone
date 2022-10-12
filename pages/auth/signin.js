@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "../../components/Header";
 import { auth } from "../../firebase";
 
-function signIn() {
+function SignIn() {
   const router = useRouter();
   const [user] = useAuthState(auth);
   const [signInWithGoogle, userCred, loading, error] =
@@ -56,4 +56,4 @@ function signIn() {
   );
 }
 
-export default signIn;
+export default SignIn;
