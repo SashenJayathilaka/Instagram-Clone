@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = () => {
             className="relative hidden lg:inline-grid w-24"
           >
             <img
-              className="mt-4"
+              className="mt-4  cursor-pointer"
               src="https://i.postimg.cc/HsQWcQVm/Instagram-logo-svg.png"
               alt=""
             />
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = () => {
             className="relative w-10  lg:hidden flex-shrink-0 cursor-pointer"
           >
             <img
-              className="mt-6"
+              className="mt-6 cursor-pointer"
               src="https://i.postimg.cc/TPPWJkDg/5ecec78673e4440004f09e77.png"
               alt=""
             />

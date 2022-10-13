@@ -13,6 +13,7 @@ import {
 import { auth, firestore } from "../firebase/firebase";
 import moment from "moment";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useRouter } from "next/router";
 
 type PostProps = {
   id: any;
@@ -20,6 +21,7 @@ type PostProps = {
   userImage: any;
   img: any;
   caption: any;
+  userId: any;
 };
 
 const Post: React.FC<PostProps> = ({
@@ -28,8 +30,10 @@ const Post: React.FC<PostProps> = ({
   userImage,
   img,
   caption,
+  userId,
 }) => {
   const [user] = useAuthState(auth);
+  const router = useRouter();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState<any[]>([]);
   const [likes, setLikes] = useState<any[]>([]);
@@ -93,6 +97,19 @@ const Post: React.FC<PostProps> = ({
     }
   };
 
+  const handleChangePage = () => {
+    if (user) {
+      router.push({
+        pathname: `profile/${userId}`,
+        query: {
+          userId: userId.toString(),
+        },
+      });
+    } else {
+      router.push("/auth/login");
+    }
+  };
+
   return (
     <div className="bg-white my-7 border rounded-sm">
       <div className="flex items-center p-5">
@@ -101,8 +118,14 @@ const Post: React.FC<PostProps> = ({
         border p-1 mr-3 cursor-pointer"
           src={userImage}
           alt=""
+          onClick={handleChangePage}
         />
-        <p className="flex-1 font-bold">{username}</p>
+        <p
+          className="flex-1 font-bold cursor-pointer"
+          onClick={handleChangePage}
+        >
+          {username}
+        </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -168,13 +191,13 @@ const Post: React.FC<PostProps> = ({
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="btn -rotate-45"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
               />
             </svg>
