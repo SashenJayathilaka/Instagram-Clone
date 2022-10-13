@@ -25,9 +25,9 @@ const CustomPosts: React.FC<CustomPostsProps> = ({
     [firestore, id]
   );
   return (
-    <div className="w-1/3 p-px md:px-3">
+    <>
       {userDBId === userId && (
-        <div>
+        <div className="w-1/3 p-px md:px-3">
           <div className="post bg-gray-100 text-white relative pb-full md:mb-6">
             <img
               className="w-full h-full absolute left-0 top-0 object-cover cursor-pointer rounded-md"
@@ -53,7 +53,7 @@ const CustomPosts: React.FC<CustomPostsProps> = ({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 export default CustomPosts;
