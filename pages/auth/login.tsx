@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-typos */
-/* eslint-disable @next/next/no-img-element */
 import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -7,9 +5,11 @@ import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import Header from "../../components/Header";
-import { auth } from "../../firebase";
+import { auth } from "../../firebase/firebase";
 
-function SignIn() {
+type LoginProps = {};
+
+const Login: React.FC<LoginProps> = () => {
   const router = useRouter();
   const [user] = useAuthState(auth);
   const [signInWithGoogle, userCred, loading, error] =
@@ -54,6 +54,5 @@ function SignIn() {
       </div>
     </>
   );
-}
-
-export default SignIn;
+};
+export default Login;

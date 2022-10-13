@@ -5,11 +5,12 @@ import Stories from "./Stories";
 import Suggestions from "./Suggestions";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { auth } from "../firebase";
+import { auth } from "../firebase/firebase";
 
-function Feed() {
+type FeedProps = {};
+
+const Feed: React.FC<FeedProps> = () => {
   const [user] = useAuthState(auth);
-
   return (
     <main
       className={`grid grid-cols-1 md:grid-cols-2 md:max-w-3xl xl:grid-cols-3 xl:max-w-6xl mx-auto
@@ -30,6 +31,5 @@ function Feed() {
       )}
     </main>
   );
-}
-
+};
 export default Feed;

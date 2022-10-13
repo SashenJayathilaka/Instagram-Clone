@@ -1,7 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
-function Story({ img, username }) {
-  //console.log(username, "🚀🚀");
+
+type StoryProps = {
+  img: any;
+  username: any;
+};
+
+const Story: React.FC<StoryProps> = ({ img, username }) => {
   return (
     <div>
       <img
@@ -15,6 +19,5 @@ function Story({ img, username }) {
       <p className="text-xs w-14 truncate text-center">{username}</p>
     </div>
   );
-}
-
+};
 export default Story;
