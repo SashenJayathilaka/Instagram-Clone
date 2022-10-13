@@ -1,11 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
-import { firestore } from "../firebase";
+import { firestore } from "../firebase/firebase";
 
-function Posts() {
-  const [posts, setPosts] = useState([]);
+type PostsProps = {};
+
+const Posts: React.FC<PostsProps> = () => {
+  const [posts, setPosts] = useState<any[]>([]);
 
   useEffect(
     () =>
@@ -17,7 +18,6 @@ function Posts() {
       ),
     [firestore]
   );
-
   return (
     <div>
       {posts.map((post) => (
@@ -32,6 +32,5 @@ function Posts() {
       ))}
     </div>
   );
-}
-
+};
 export default Posts;

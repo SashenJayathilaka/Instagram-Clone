@@ -1,15 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
-import {
-  BookmarkIcon,
-  ChatIcon,
-  DotsHorizontalIcon,
-  EmojiHappyIcon,
-  HeartIcon,
-  PaperAirplaneIcon,
-} from "@heroicons/react/outline";
-import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import TagFacesOutlinedIcon from "@mui/icons-material/TagFacesOutlined";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import {
   addDoc,
   collection,
@@ -21,16 +16,49 @@ import {
   orderBy,
   setDoc,
 } from "firebase/firestore";
-import { auth, firestore } from "../firebase";
-import Moment from "react-moment";
+import { auth, firestore } from "../firebase/firebase";
+import moment from "moment";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-function Post({ id, username, userImage, img, caption }) {
+type PostProps = {
+  id: any;
+  username: any;
+  userImage: any;
+  img: any;
+  caption: any;
+};
+
+const Post: React.FC<PostProps> = ({
+  id,
+  username,
+  userImage,
+  img,
+  caption,
+}) => {
   const [user] = useAuthState(auth);
-  const [comment, setComment] = useState([]);
-  const [comments, setComments] = useState([]);
-  const [likes, setLikes] = useState([]);
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState<any[]>([]);
+  const [likes, setLikes] = useState<any[]>([]);
   const [hasLikes, setHasLikes] = useState(false);
+
+  const sendComment = async (e: any) => {
+    e.preventDefault();
+    /*     setLoading(true); */
+
+    try {
+      await addDoc(collection(firestore, "posts", id, "comments"), {
+        comment: comment,
+        username: user?.displayName,
+        userImage: user?.photoURL,
+        timestamp: serverTimestamp(),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    setComment("");
+    /*  setLoading(false); */
+  };
 
   useEffect(
     () =>
@@ -60,30 +88,12 @@ function Post({ id, username, userImage, img, caption }) {
   const likePost = async () => {
     try {
       if (hasLikes) {
-        await deleteDoc(doc(firestore, "posts", id, "likes", user?.uid));
+        await deleteDoc(doc(firestore, "posts", id, "likes", user?.uid!));
       } else {
-        await setDoc(doc(firestore, "posts", id, "likes", user?.uid), {
+        await setDoc(doc(firestore, "posts", id, "likes", user?.uid!), {
           username: user?.displayName,
         });
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const sendComment = async (e) => {
-    e.preventDefault();
-
-    try {
-      const commentToSend = comment;
-      setComment("");
-
-      await addDoc(collection(firestore, "posts", id, "comments"), {
-        comment: commentToSend,
-        username: user?.displayName,
-        userImage: user?.photoURL,
-        timestamp: serverTimestamp(),
-      });
     } catch (error) {
       console.log(error);
     }
@@ -99,24 +109,28 @@ function Post({ id, username, userImage, img, caption }) {
           alt=""
         />
         <p className="flex-1 font-bold">{username}</p>
-        <DotsHorizontalIcon className="h-5 cursor-pointer" />
+        <MoreHorizOutlinedIcon className="h-5 cursor-pointer" />
       </div>
       <img src={img} className="object-cover w-full" alt="" />
       {user && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex space-x-4">
             {hasLikes ? (
-              <HeartIconFilled
+              <FavoriteOutlinedIcon
                 onClick={likePost}
                 className="btn text-red-500"
               />
             ) : (
-              <HeartIcon onClick={likePost} className="btn" />
+              <FavoriteBorderOutlinedIcon onClick={likePost} className="btn" />
             )}
-            <ChatIcon className="btn" />
-            <PaperAirplaneIcon className="btn" />
+            <ChatBubbleOutlineOutlinedIcon className="btn" />
+            <img
+              src="https://cdn.onlinewebfonts.com/svg/img_379476.png"
+              alt=""
+              className="btn w-5 h-5 mt-1"
+            />
           </div>
-          <BookmarkIcon className="btn" />
+          <BookmarkBorderOutlinedIcon className="btn" />
         </div>
       )}
 
@@ -146,9 +160,11 @@ function Post({ id, username, userImage, img, caption }) {
                 <span className="font-bold">{comment.data().username} </span>
                 {comment.data().comment}
               </p>
-              <Moment className="pr-5 text-xs" fromNow>
-                {comment.data().timestamp?.toDate()}
-              </Moment>
+              <p className="pr-5 text-xs">
+                {moment(
+                  new Date(comment.data().timestamp?.seconds * 1000)
+                ).fromNow()}
+              </p>
             </div>
           ))}
         </div>
@@ -156,7 +172,7 @@ function Post({ id, username, userImage, img, caption }) {
 
       {user && (
         <form className="flex items-center p-4">
-          <EmojiHappyIcon className="h-7" />
+          <TagFacesOutlinedIcon className="h-7" />
           <input
             type="text"
             value={comment}
@@ -176,6 +192,5 @@ function Post({ id, username, userImage, img, caption }) {
       )}
     </div>
   );
-}
-
+};
 export default Post;

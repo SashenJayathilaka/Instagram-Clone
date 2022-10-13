@@ -1,21 +1,23 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { auth } from "../firebase";
+import { auth } from "../firebase/firebase";
 
-function MiniProfile() {
+type MiniProfileProps = {};
+
+const MiniProfile: React.FC<MiniProfileProps> = () => {
   const [user] = useAuthState(auth);
 
   const logout = async () => {
     await signOut(auth);
   };
+
   return (
     <div className="flex items-center justify-between mt-14 ml-10">
       <img
         className="w-16 h-16 rounded-full border p-[2px]"
-        src={user?.photoURL}
+        src={user?.photoURL as string}
         alt=""
       />
       <div className="flex-1 mx-4">
@@ -27,6 +29,5 @@ function MiniProfile() {
       </button>
     </div>
   );
-}
-
+};
 export default MiniProfile;

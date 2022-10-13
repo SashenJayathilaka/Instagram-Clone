@@ -1,19 +1,16 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
-function Suggestions() {
-  const [suggestions, setSuggestions] = useState([]);
+type SuggestionsProps = {};
+
+const Suggestions: React.FC<SuggestionsProps> = () => {
+  const [suggestions, setSuggestions] = useState<any[]>([]);
 
   useEffect(() => {
     const suggestions = [...Array(5)].map((_, i) => ({
       userId: faker.datatype.uuid(),
       username: faker.internet.userName(),
-      email: faker.internet.email(),
       avatar: faker.image.avatar(),
-      password: faker.internet.password(),
-      birthdate: faker.date.birthdate(),
-      registeredAt: faker.date.past(),
       id: i,
     }));
     setSuggestions(suggestions);
@@ -43,6 +40,5 @@ function Suggestions() {
       ))}
     </div>
   );
-}
-
+};
 export default Suggestions;
