@@ -212,6 +212,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 Your Name - [@twitter_handle](https://twitter.com/SashenHasinduJ) - sashenjayathilaka95@gmail.com
 
 Project Link: [https://github.com/SashenJayathilaka/Instagram-Clone.git](https://github.com/SashenJayathilaka/Instagram-Clone.git)
+
+<hr />
+
+<div align="center">
+<a href="https://projects-seven-peach.vercel.app/" target="_blank"><img  src='https://user-images.githubusercontent.com/99184393/195737045-7c3e9b89-b961-4bc5-9d69-61d2a76176ea.png' alt='image'/></a>
+</div>
+
 <br />
 
 <div align="center">Don't forget to leave a star ⭐️</div>
