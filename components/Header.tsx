@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { motion } from "framer-motion";
 
 import { auth } from "../firebase/firebase";
 import PostModal from "./modal/PostModal";
@@ -96,21 +97,26 @@ const Header: React.FC<HeaderProps> = () => {
                     3
                   </div>
                 </div>
-                <svg
-                  onClick={() => setOpen(true)}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="navBtn"
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                  <svg
+                    onClick={() => setOpen(true)}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="navBtn"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </motion.button>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
