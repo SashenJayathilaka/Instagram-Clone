@@ -31,6 +31,7 @@ const ProfileFeed: React.FC<ProfileFeedProps> = ({ userId, setUserData }) => {
           img={post.data().image}
           userId={userId}
           userDBId={post.data().userId}
+          key={post.id}
         />
       ))}
     </div>
