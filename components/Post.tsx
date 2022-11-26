@@ -44,9 +44,9 @@ const Post: React.FC<PostProps> = ({
 
   const sendComment = async (e: any) => {
     e.preventDefault();
-    setLoading(true);
 
     if (comment) {
+      setLoading(true);
       try {
         await addDoc(collection(firestore, "posts", id, "comments"), {
           comment: comment,
