@@ -27,7 +27,6 @@ const ProfileFeed: React.FC<ProfileFeedProps> = ({ userId, setUserData }) => {
     <div className="flex flex-wrap -mx-px md:-mx-3">
       {posts.map((post) => (
         <CustomPosts
-          key={post.id}
           id={post.id}
           img={post.data().image}
           userId={userId}
