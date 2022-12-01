@@ -1,15 +1,11 @@
+import type { NextPage } from "next";
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { getSession } from "next-auth/react";
 
 import Header from "../components/Header";
 import Feed from "../components/Feed";
 
-type Props = {
-  session: any;
-};
-
-const Home = ({ session }: Props) => {
+const Home: NextPage = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -25,19 +21,9 @@ const Home = ({ session }: Props) => {
         />
       </Head>
       <Header />
-      <Feed session={session} />
+      <Feed />
     </motion.div>
   );
 };
 
 export default Home;
-
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-
-  return {
-    props: {
-      session: session,
-    },
-  };
-}

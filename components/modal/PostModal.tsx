@@ -1,22 +1,22 @@
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import LoopIcon from "@mui/icons-material/Loop";
+import React, { useRef, useState } from "react";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { useAuthState } from "react-firebase-hooks/auth";
 import {
   addDoc,
   collection,
-  doc,
   serverTimestamp,
   Timestamp,
   updateDoc,
+  doc,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import { useSession } from "next-auth/react";
-import React, { useRef, useState } from "react";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import LoopIcon from "@mui/icons-material/Loop";
 
-import { firestore, storage } from "../../firebase/firebase";
 import useSelectFile from "../../hooks/useSelectFile";
+import { auth, firestore, storage } from "../../firebase/firebase";
 
 const style = {
   position: "absolute" as "absolute",
@@ -35,7 +35,7 @@ type PostModalProps = {
 };
 
 const PostModal: React.FC<PostModalProps> = ({ open, setOpen }) => {
-  const { data: session }: any = useSession();
+  const [user] = useAuthState(auth);
   const { selectedFile, setSelectedFile, onSelectedFile } = useSelectFile();
   const selectedFileRef = useRef<HTMLInputElement>(null);
   const [caption, setCaption] = useState("");
@@ -47,11 +47,11 @@ const PostModal: React.FC<PostModalProps> = ({ open, setOpen }) => {
     setLoading(true);
     try {
       const docRef = await addDoc(collection(firestore, "posts"), {
-        userId: session?.user?.uid,
-        username: session?.user?.name,
+        userId: user?.uid,
+        username: user?.displayName,
         caption: caption,
-        profileImage: session?.user?.image,
-        company: session?.user?.email,
+        profileImage: user?.photoURL,
+        company: user?.email,
         timestamp: serverTimestamp() as Timestamp,
       });
 

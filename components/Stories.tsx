@@ -1,13 +1,14 @@
+import React, { useState, useEffect } from "react";
 import { faker } from "@faker-js/faker";
-import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
-
 import Story from "./Story";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import { auth } from "../firebase/firebase";
 
 type StoriesProps = {};
 
 const Stories: React.FC<StoriesProps> = () => {
-  const { data: session }: any = useSession();
+  const [user] = useAuthState(auth);
   const [suggestions, setSuggestions] = useState<any[]>([]);
 
   useEffect(() => {
@@ -27,9 +28,7 @@ const Stories: React.FC<StoriesProps> = () => {
     overflow-x-scroll scrollbar-thin
     scrollbar-thumb-black"
     >
-      {session && (
-        <Story img={session?.user?.image} username={session?.user?.name} />
-      )}
+      {user && <Story img={user?.photoURL} username={user?.displayName} />}
 
       {suggestions.map((profile) => (
         <Story

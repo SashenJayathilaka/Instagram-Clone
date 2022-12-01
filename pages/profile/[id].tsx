@@ -1,25 +1,13 @@
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { getSession } from "next-auth/react";
-import { useRouter } from "next/router";
 
 import Header from "../../components/Header";
 import MainProfile from "../../components/profilePage/MainProfile";
 
-type ProfilePageProps = {
-  session: any;
-};
+type ProfilePageProps = {};
 
-const ProfilePage: React.FC<ProfilePageProps> = ({ session }) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!session) {
-      router.push("/");
-    } else return;
-  }, [session]);
-
+const ProfilePage: React.FC<ProfilePageProps> = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -40,13 +28,3 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ session }) => {
   );
 };
 export default ProfilePage;
-
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-
-  return {
-    props: {
-      session: session,
-    },
-  };
-}

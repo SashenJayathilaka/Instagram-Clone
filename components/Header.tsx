@@ -1,18 +1,24 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { motion } from "framer-motion";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { motion } from "framer-motion";
 
+import { auth } from "../firebase/firebase";
 import PostModal from "./modal/PostModal";
 
 type HeaderProps = {};
 
 const Header: React.FC<HeaderProps> = () => {
-  const { data: session }: any = useSession();
+  const [user] = useAuthState(auth);
   const router = useRouter();
   const [open, setOpen] = useState(false);
+
+  const logout = async () => {
+    await signOut(auth);
+  };
 
   return (
     <>
@@ -69,7 +75,7 @@ const Header: React.FC<HeaderProps> = () => {
               <MenuIcon />
             </div>
 
-            {session ? (
+            {user ? (
               <>
                 <div className="relative navBtn">
                   <svg
@@ -141,9 +147,9 @@ const Header: React.FC<HeaderProps> = () => {
                 </svg>
 
                 <img
-                  onClick={() => signOut()}
+                  onClick={logout}
                   className="h-10 rounded-full cursor-pointer"
-                  src={session?.user?.image as string}
+                  src={user?.photoURL as string}
                   alt=""
                 />
               </>

@@ -1,29 +1,29 @@
+import React, { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
   deleteDoc,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
   serverTimestamp,
+  onSnapshot,
+  query,
+  doc,
+  orderBy,
   setDoc,
 } from "firebase/firestore";
 import { motion } from "framer-motion";
 import moment from "moment";
-import { useSession } from "next-auth/react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
 
-import { firestore } from "../firebase/firebase";
+import { auth, firestore } from "../firebase/firebase";
 
 type PostProps = {
-  id: string;
-  username: string;
-  userImage: string;
-  img: string;
-  caption: string;
-  userId: string;
+  id: any;
+  username: any;
+  userImage: any;
+  img: any;
+  caption: any;
+  userId: any;
 };
 
 const Post: React.FC<PostProps> = ({
@@ -34,7 +34,7 @@ const Post: React.FC<PostProps> = ({
   caption,
   userId,
 }) => {
-  const { data: session }: any = useSession();
+  const [user] = useAuthState(auth);
   const router = useRouter();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState<any[]>([]);
@@ -50,8 +50,8 @@ const Post: React.FC<PostProps> = ({
       try {
         await addDoc(collection(firestore, "posts", id, "comments"), {
           comment: comment,
-          username: session?.user?.name,
-          userImage: session?.user?.image,
+          username: user?.displayName,
+          userImage: user?.photoURL,
           timestamp: serverTimestamp(),
         });
 
@@ -87,26 +87,18 @@ const Post: React.FC<PostProps> = ({
   );
 
   useEffect(
-    () =>
-      setHasLikes(
-        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
-      ),
+    () => setHasLikes(likes.findIndex((like) => like.id === user?.uid) !== -1),
     [likes]
   );
 
   const likePost = async () => {
     try {
       if (hasLikes) {
-        await deleteDoc(
-          doc(firestore, "posts", id, "likes", session?.user?.uid!)
-        );
+        await deleteDoc(doc(firestore, "posts", id, "likes", user?.uid!));
       } else {
-        await setDoc(
-          doc(firestore, "posts", id, "likes", session?.user?.uid!),
-          {
-            username: session?.user?.name,
-          }
-        );
+        await setDoc(doc(firestore, "posts", id, "likes", user?.uid!), {
+          username: user?.displayName,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -114,7 +106,7 @@ const Post: React.FC<PostProps> = ({
   };
 
   const handleChangePage = () => {
-    if (session) {
+    if (user) {
       router.push({
         pathname: `profile/${userId}`,
         query: {
@@ -163,7 +155,7 @@ const Post: React.FC<PostProps> = ({
         </svg>
       </div>
       <img src={img} className="object-cover w-full" alt="" />
-      {session && (
+      {user && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex space-x-4">
             {hasLikes ? (
@@ -299,7 +291,7 @@ const Post: React.FC<PostProps> = ({
         </div>
       )}
 
-      {session && (
+      {user && (
         <form className="flex items-center p-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"

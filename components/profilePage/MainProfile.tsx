@@ -1,7 +1,7 @@
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase/firebase";
 import Intro from "./Intro";
 import ProfileFeed from "./ProfileFeed";
 import ProfileHeader from "./ProfileHeader";
@@ -10,7 +10,7 @@ import Tag from "./Tag";
 type Props = {};
 
 export default function MainProfile({}: Props) {
-  const { data: session }: any = useSession();
+  const [user] = useAuthState(auth);
   const router = useRouter();
   const { userId } = router.query;
   const [userData, setUserData] = useState<any[]>([]);
@@ -23,7 +23,7 @@ export default function MainProfile({}: Props) {
         if (data.data().userId === userId) {
           setUserData(data.data());
 
-          if (data.data().username === session?.user?.name) {
+          if (data.data().username === user?.displayName) {
             setIsShow(true);
           }
         }

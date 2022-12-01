@@ -1,8 +1,8 @@
 import React from "react";
 
 type StoryProps = {
-  img: string;
-  username: string;
+  img: any;
+  username: any;
 };
 
 const Story: React.FC<StoryProps> = ({ img, username }) => {
