@@ -18,11 +18,11 @@
 }
 
 .bioclass {
-  color: #8e8e8e;
+  color: #8E8E8E;
 }
 
 /* hide search icon on search focus */
-.search-bar:focus + .fa-search {
+.search-bar:focus+.fa-search {
   display: none;
 }
 
