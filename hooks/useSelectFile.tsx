@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const useSelectFile = () => {
+  // select files
   const [selectedFile, setSelectedFile] = useState<string>();
 
   const onSelectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {

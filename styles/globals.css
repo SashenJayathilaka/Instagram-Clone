@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* button target */
 @layer components {
   .navBtn {
     @apply hidden h-6 md:inline-flex
@@ -18,11 +19,11 @@
 }
 
 .bioclass {
-  color: #8E8E8E;
+  color: #8e8e8e;
 }
 
 /* hide search icon on search focus */
-.search-bar:focus+.fa-search {
+.search-bar:focus + .fa-search {
   display: none;
 }
 
