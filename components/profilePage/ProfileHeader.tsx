@@ -1,5 +1,7 @@
 import React from "react";
 import { faker } from "@faker-js/faker";
+import AvatarSkeleton from "../Skeleton/AvatarSkeleton";
+import { motion } from "framer-motion";
 
 type ProfileHeaderProps = {
   isShow: boolean;
@@ -10,11 +12,27 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isShow, userData }) => {
   return (
     <header className="flex flex-wrap items-center p-4 md:py-8">
       <div className="md:w-3/12 md:ml-16">
-        <img
-          className="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full border-2 border-pink-600 p-1"
-          src={userData.profileImage}
-          alt="profile"
-        />
+        {userData.profileImage ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <img
+              className="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full border-2 border-pink-600 p-1"
+              src={userData.profileImage}
+              alt="profile"
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <AvatarSkeleton />
+          </motion.div>
+        )}
       </div>
       <div className="w-8/12 md:w-7/12 ml-4">
         <div className="md:flex md:flex-wrap md:items-center mb-4">

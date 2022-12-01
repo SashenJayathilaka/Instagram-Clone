@@ -1,27 +1,13 @@
-import React, { useEffect } from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { motion } from "framer-motion";
+import { signIn } from "next-auth/react";
+import Head from "next/head";
+import React from "react";
 
 import Header from "../../components/Header";
-import { auth } from "../../firebase/firebase";
 
 type LoginProps = {};
 
 const Login: React.FC<LoginProps> = () => {
-  const router = useRouter();
-  const [user] = useAuthState(auth);
-  const [signInWithGoogle, userCred, loading, error] =
-    useSignInWithGoogle(auth);
-
-  useEffect(() => {
-    if (user) {
-      router.push("/");
-    } else return;
-  }, [user]);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -51,7 +37,7 @@ const Login: React.FC<LoginProps> = () => {
           <div>
             <button
               className="p-3 bg-blue-500 rounded-lg text-white"
-              onClick={() => signInWithGoogle()}
+              onClick={() => signIn("google", { callbackUrl: "/" })}
             >
               Sign in with Google
             </button>
