@@ -1,5 +1,4 @@
 export default function Plus(): any {
-  // create SVG Icon
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* button target */
 @layer components {
   .navBtn {
     @apply hidden h-6 md:inline-flex
