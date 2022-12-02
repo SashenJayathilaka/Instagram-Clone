@@ -3,9 +3,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { motion } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import HeartTip from "./HeartTip";
 import PostModal from "./modal/PostModal";
+import SearchTip from "./SearchTip";
 
 type HeaderProps = {};
 
@@ -13,6 +15,15 @@ const Header: React.FC<HeaderProps> = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [heartTipOpen, setHartTipOpen] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setHartTipOpen(false);
+    }, 20000);
+  }, [heartTipOpen]);
 
   return (
     <>
@@ -40,14 +51,32 @@ const Header: React.FC<HeaderProps> = () => {
           </div>
           <div className="max-w-xs">
             <div className="relative mt-1 p-3 rounded-md">
-              <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
-                <SearchIcon className="h-5 w-5 text-gray-500" />
+              <div
+                onMouseLeave={() => !searchValue && setIsOpen(false)}
+                onMouseEnter={() => setIsOpen(true)}
+              >
+                <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
+                  <SearchIcon className="h-5 w-5 text-gray-500" />
+                </div>
+                <input
+                  className="bg-gray-50 block w-full pl-10 sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-md"
+                  type="text"
+                  placeholder="Search"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
               </div>
-              <input
-                className="bg-gray-50 block w-full pl-10 sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-md"
-                type="text"
-                placeholder="Search"
-              />
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  onMouseLeave={() => !searchValue && setIsOpen(false)}
+                  onMouseEnter={() => setIsOpen(true)}
+                >
+                  <SearchTip searchValue={searchValue} />
+                </motion.div>
+              )}
             </div>
           </div>
           <div className="flex items-center justify-end space-x-4">
@@ -111,6 +140,7 @@ const Header: React.FC<HeaderProps> = () => {
                     />
                   </svg>
                 </motion.button>
+
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -132,6 +162,7 @@ const Header: React.FC<HeaderProps> = () => {
                   strokeWidth={1.5}
                   stroke="currentColor"
                   className="navBtn"
+                  onClick={() => setHartTipOpen(true)}
                 >
                   <path
                     strokeLinecap="round"
@@ -139,6 +170,7 @@ const Header: React.FC<HeaderProps> = () => {
                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
                   />
                 </svg>
+                {heartTipOpen && <HeartTip />}
 
                 <img
                   onClick={() => signOut()}
