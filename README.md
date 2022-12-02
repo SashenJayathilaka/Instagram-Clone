@@ -5,7 +5,7 @@
   <h1>Instagram Clone with React.JS</h1>
   
   <p>
-   Instagram 2.0 with REACT.JS! (Next.js, Tailwind CSS, Firebase v9, Recoil, Image Uploading, Google Authentication,, Instagram Profile)
+Instagram 2.0 with REACT.JS! (Next.js, NextAuth.js v4.17.0, Tailwind CSS, Firebase v9, Recoil, Image Uploading, Google Authentication,, Instagram Profile)
   </p>
   
   
@@ -120,19 +120,28 @@
 
 To run this project, you will need to add the following environment variables to your .env file
 
+`NEXTAUTH_URL`
+
+`GOOGLE_CLIENT_ID`
+
+`NEXT_PUBLIC_SECRET`
+
+`GOOGLE_CLIENT_SECRET`
+
+`NEXT_PUBLIC_BASE_URL`
+
+`NEXT_PUBLIC_FIREBASE_APP_ID`
+
 `NEXT_PUBLIC_FIREBASE_API_KEY`
 
-`NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
-
 `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+
+`NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
 
 `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
 
 `NEXT_PUBLIC_FIREBASE_MESSAGING_SET`
 
-`NEXT_PUBLIC_FIREBASE_APP_ID`
-
-`NEXT_PUBLIC_BASE_URL`
 
 ### :gear: Installation
 
