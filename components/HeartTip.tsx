@@ -4,7 +4,7 @@ type HeartIconProps = {};
 
 const HeartTip: React.FC<HeartIconProps> = () => {
   return (
-    <div className="heart_tip absolute top-[58px] bg-red-500 -translate-x-1/2 p-3 pl-[18px] rounded-lg">
+    <div className="heart_tip absolute top-[58px] bg-red-500 -translate-x-1/2 p-3 pl-[20px] rounded-lg">
       <div className="flex space-x-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
