@@ -5,7 +5,7 @@
   <h1>Instagram Clone with React.JS</h1>
   
   <p>
-Instagram 2.0 with REACT.JS! (Next.js, NextAuth.js v4.17.0, Tailwind CSS, Firebase v9, Recoil, Image Uploading, Google Authentication,, Instagram Profile)
+Instagram 2.0 with REACT.JS! (Next.js, NextAuth.js v4.17.0, Tailwind CSS, Firebase v9, Image Uploading, Google Authentication,, Instagram Profile)
   </p>
   
   
