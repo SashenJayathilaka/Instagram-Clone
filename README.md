@@ -101,6 +101,9 @@ Instagram 2.0 with REACT.JS! (Next.js, NextAuth.js v4.17.0, Tailwind CSS, Fireba
                                 <td>
 <a href="#"><img src="https://user-images.githubusercontent.com/99184393/177784603-d69e9d02-721a-4bce-b9b3-949165d2edeb.png" alt="" width="30" height="30" /></a>
         </td>
+                                            <td>
+<a href="#"><img src="https://user-images.githubusercontent.com/99184393/204170976-0e5c6e2a-2b41-483d-adbd-d5d1e40b8d15.png" alt="" width="30" height="30" /></a>
+        </td>
                                 <td>
 <a href="#"><img src="https://raw.githubusercontent.com/atulmy/oauth/master/web/public/images/social/instagram.svg" alt="" width="30" height="30" /></a>
         </td>
