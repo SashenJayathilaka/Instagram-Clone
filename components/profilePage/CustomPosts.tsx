@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { firestore } from "../../firebase/firebase";
 
 type CustomPostsProps = {
-  img: any;
-  userId: any;
-  userDBId: any;
-  id: any;
+  img: string;
+  userId: string;
+  userDBId: string;
+  id: string;
 };
 
 const CustomPosts: React.FC<CustomPostsProps> = ({

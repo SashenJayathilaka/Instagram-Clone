@@ -1,15 +1,16 @@
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
-import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
+import { Session } from "next-auth";
 import Feed from "../components/Feed";
 import Header from "../components/Header";
 import { firestore } from "../firebase/firebase";
 
 type Props = {
-  session: any;
+  session: Session;
 };
 
 const Home = ({ session }: Props) => {
@@ -33,7 +34,7 @@ const Home = ({ session }: Props) => {
     } else return;
   };
 
-  const userCreate = async (session: any) => {
+  const userCreate = async (session: Session) => {
     const userDocRef = doc(firestore, "users", session?.user?.uid);
     await setDoc(userDocRef, JSON.parse(JSON.stringify(session)));
   };

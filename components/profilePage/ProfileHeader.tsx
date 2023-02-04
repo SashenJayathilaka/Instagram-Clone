@@ -3,9 +3,11 @@ import { faker } from "@faker-js/faker";
 import AvatarSkeleton from "../Skeleton/AvatarSkeleton";
 import { motion } from "framer-motion";
 
+import { UserData } from "../../typings";
+
 type ProfileHeaderProps = {
   isShow: boolean;
-  userData: any;
+  userData: UserData;
 };
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isShow, userData }) => {

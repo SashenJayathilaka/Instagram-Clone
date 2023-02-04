@@ -35,7 +35,7 @@ type PostModalProps = {
 };
 
 const PostModal: React.FC<PostModalProps> = ({ open, setOpen }) => {
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
   const { selectedFile, setSelectedFile, onSelectedFile } = useSelectFile();
   const selectedFileRef = useRef<HTMLInputElement>(null);
   const [caption, setCaption] = useState("");

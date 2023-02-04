@@ -7,7 +7,7 @@ import Story from "./Story";
 type StoriesProps = {};
 
 const Stories: React.FC<StoriesProps> = () => {
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
   const [suggestions, setSuggestions] = useState<any[]>([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Stories: React.FC<StoriesProps> = () => {
     flex space-x-2 p-6 bg-white mt-8 border-gray-200 border rounded-sm overflow-x-scroll scrollbar-thin scrollbar-thumb-black"
     >
       {session && (
-        <Story img={session?.user?.image} username={session?.user?.name} />
+        <Story img={session?.user?.image!} username={session?.user?.name!} />
       )}
 
       {suggestions.map((profile) => (
