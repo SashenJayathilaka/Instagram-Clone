@@ -48,16 +48,9 @@ const Posts: React.FC<PostsProps> = () => {
         </>
       ) : (
         <>
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
-          <PostSkeleton loading={true} />
+          {[...Array(5)].map((_, i) => (
+            <PostSkeleton key={i} loading={true} />
+          ))}
         </>
       )}
     </div>

@@ -12,7 +12,7 @@ import SearchTip from "./SearchTip";
 type HeaderProps = {};
 
 const Header: React.FC<HeaderProps> = () => {
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

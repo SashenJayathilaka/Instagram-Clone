@@ -34,7 +34,7 @@ const Post: React.FC<PostProps> = ({
   caption,
   userId,
 }) => {
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState<any[]>([]);

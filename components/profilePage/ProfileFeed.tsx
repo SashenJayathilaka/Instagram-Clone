@@ -1,11 +1,12 @@
 import { onSnapshot, query, collection, orderBy } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+
 import { firestore } from "../../firebase/firebase";
 import CustomPosts from "./CustomPosts";
 
 type ProfileFeedProps = {
-  userId: any;
-  setUserData: any;
+  userId: string;
+  setUserData: Function;
 };
 
 const ProfileFeed: React.FC<ProfileFeedProps> = ({ userId, setUserData }) => {

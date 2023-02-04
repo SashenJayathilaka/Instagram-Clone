@@ -4,13 +4,13 @@ import React from "react";
 type MiniProfileProps = {};
 
 const MiniProfile: React.FC<MiniProfileProps> = () => {
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
 
   return (
     <div className="flex items-center justify-between mt-14 ml-10">
       <img
         className="w-16 h-16 rounded-full border p-[2px]"
-        src={session?.user?.image as string}
+        src={session?.user?.image!}
         alt=""
       />
       <div className="flex-1 mx-4">

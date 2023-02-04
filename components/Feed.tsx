@@ -1,3 +1,4 @@
+import { Session } from "next-auth";
 import React from "react";
 
 import MiniProfile from "./MiniProfile";
@@ -6,7 +7,7 @@ import Stories from "./Stories";
 import Suggestions from "./Suggestions";
 
 type FeedProps = {
-  session: string[];
+  session: Session;
 };
 
 const Feed: React.FC<FeedProps> = ({ session }) => {
