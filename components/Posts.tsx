@@ -11,24 +11,28 @@ const Posts: React.FC<PostsProps> = () => {
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(
-    () =>
-      onSnapshot(
+  const fetchPost = () => {
+    try {
+      setLoading(false);
+
+      const fetchQuery = onSnapshot(
         query(collection(firestore, "posts"), orderBy("timestamp", "desc")),
         (snapshot) => {
           setPosts(snapshot.docs);
         }
-      ),
-    [firestore]
-  );
+      );
+
+      fetchQuery;
+
+      setLoading(true);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
-    setTimeout(() => {
-      if (posts) {
-        setLoading(true);
-      } else return;
-    }, 2000);
-  }, [posts]);
+    fetchPost();
+  }, [firestore]);
 
   return (
     <div>
