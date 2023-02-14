@@ -24,7 +24,9 @@ const Posts: React.FC<PostsProps> = () => {
 
       fetchQuery;
 
-      setLoading(true);
+      setTimeout(() => {
+        setLoading(true);
+      }, 1000);
     } catch (error: any) {
       console.log(error.message);
     }
