@@ -16,7 +16,7 @@
     "@mui/material": "^5.11.0",
     "@tailwindcss/forms": "^0.5.3",
     "firebase": "^9.18.0",
-    "framer-motion": "^7.6.12",
+    "framer-motion": "^10.12.18",
     "moment": "^2.29.4",
     "next": "13.0.6",
     "next-auth": "^4.20.1",
